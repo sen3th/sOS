@@ -8,9 +8,14 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-<div id="desktop" class="min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4">
-
-  </div>
+    <div id="desktop" class="min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4">
+    <div id="taskbar" class="fixed bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white p-2 flex justify-between items-center">
+        <div id="start-menu" class="cursor-pointer">Start</div>
+        <div id="taskbar-widgets" class="flex space-x-4">
+            <div id="time" class="text-sm">12:00 PM</div>
+            <div id="notifications" class="text-sm">0 Notifications</div>
+        </div>
+    </div>
 </div>
-</body>
+</body> 
 </html>
