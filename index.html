@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="desktop" class="min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4">
+
     <div id="taskbar" class="fixed bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white p-2 flex justify-between items-center">
         <div id="start-menu" class="cursor-pointer">Start</div>
         <div id="taskbar-widgets" class="flex space-x-4">
@@ -17,6 +18,7 @@
             <div id="notifications" class="text-sm">0 Notifications</div>
         </div>
     </div>
+
     <div id="startMenu" class="hidden fixed bottom-12 left-4 bg-white bg-opacity-90 rounded shadow-lg p-4 w-48">
         <ul>
             <li class="py-1 hover:bg-gray-200 cursor-pointer"><i class="bi bi-file-earmark-text"></i> Notepad</li>
@@ -24,6 +26,26 @@
             <li class="py-1 hover:bg-gray-200 cursor-pointer"><i class="bi bi-music-note"></i> Music</li>
         </ul>
     </div>
-</div>
-</body> 
+
+    <div id="windows-container" class="relative">
+
+    <div id="shortcutsContainer" class="absolute top-4 left-4 space-y-4">
+
+        <div class="shortcut flex flex-col items-center cursor-pointer" data-app="notepad">
+            <i class="bi bi-file-earmark-text text-4xl text-white"></i>
+            <span class="text-white mt-2">Notepad</span>
+        </div>
+
+        <div class="shortcut flex flex-col items-center cursor-pointer" data-app="camera">
+            <i class="bi bi-camera text-4xl text-white"></i>
+            <span class="text-white mt-2">Camera</span>
+        </div>
+
+        <div class="shortcut flex flex-col items-center cursor-pointer" data-app="music">
+            <i class="bi bi-music-note text-4xl text-white"></i>
+            <span class="text-white mt-2">Music</span>
+        </div>
+
+    </div>
+</body>
 </html>
