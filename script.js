@@ -32,3 +32,25 @@ document.addEventListener('click', (event) => {
         startMenu.classList.add('hidden');
     }
 });
+
+document.getElementById('desktop').addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    
+    const startMenu = document.getElementById('rightClickMenu');
+    if (startMenu) {
+        startMenu.classList.add('hidden');
+    }
+
+    startMenu.style.top = `${e.clientY}px`;
+    startMenu.style.left = `${e.clientX}px`;
+    startMenu.classList.remove('hidden');
+})
+
+document.addEventListener('click', (event) => {
+    const startMenu = document.getElementById('rightClickMenu');
+    const startButton = document.getElementById('rightClickMenu');
+
+    if (startMenu && !startMenu.contains(event.target) && !startButton.contains(event.target)) {
+        startMenu.classList.add('hidden');
+    }
+});
