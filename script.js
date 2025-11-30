@@ -65,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 interact('#notepad').draggable({
     allowFrom: '.window-header',
+    modifiers: [
+        interact.modifiers.restrictRect({
+            restriction: '#desktop',
+            endOnly: false
+        })
+    ],
     listeners: {
         move(event) {
             const target = event.target;
@@ -74,7 +80,7 @@ interact('#notepad').draggable({
             target.setAttribute('data-x', X);
             target.setAttribute('data-y', Y);
         }
-    },
+    }
 });
 
 const shortcuts = document.querySelectorAll('.shortcut');

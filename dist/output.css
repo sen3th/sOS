@@ -184,6 +184,9 @@
   .fixed {
     position: fixed;
   }
+  .relative {
+    position: relative;
+  }
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
