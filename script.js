@@ -54,3 +54,36 @@ document.addEventListener('click', (event) => {
         startMenu.classList.add('hidden');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const notepad = document.getElementById('notepad');
+    const closeButton = notepad.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        notepad.classList.add('hidden');
+    });
+});
+
+interact('#notepad').draggable({
+    allowFrom: '.window-header',
+    listeners: {
+        move(event) {
+            const target = event.target;
+            const X = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+            const Y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+            target.style.transform = `translate(${X}px, ${Y}px)`;
+            target.setAttribute('data-x', X);
+            target.setAttribute('data-y', Y);
+        }
+    },
+});
+
+const shortcuts = document.querySelectorAll('.shortcut');
+shortcuts.forEach(shortcut => {
+    shortcut.addEventListener('click', () => {
+        const appId = shortcut.getAttribute('data-app');
+        if (appId === 'notepad') {
+            const notepad = document.getElementById('notepad');
+            notepad.classList.remove('hidden');
+        }
+    });
+});
