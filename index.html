@@ -9,6 +9,8 @@
     <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css" />
+    <script src="https://cdn.plyr.io/3.8.3/plyr.polyfilled.js"></script>
 </head>
 <body>
     <div id="desktop" class="relative min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4 select-none">
@@ -85,8 +87,8 @@
                 <button class="close-button text-red-500 font-bold hover:rotate-90 hover:scale-125 cursor-pointer transition duration-300">&times;</button>
             </div>
             <div class="flex-grow p-4 flex flex-col">
-                <audio id="audio-player" controls class="w-full mt-auto" autoplay>
-                    <source src="http://ice1.somafm.com/folkfwd-128-mp3" type="audio/mp3">
+                <audio id="audio-player" class="w-full mt-auto border-gray-400">
+                    <source src="http://ice1.somafm.com/folkfwd-128-mp3" type="audio/mpeg">
                 </audio>
             </div>
         </div>

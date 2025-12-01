@@ -131,8 +131,9 @@ shortcuts.forEach(shortcut => {
         if (appId === 'music') {
             const music = document.getElementById('music');
             music.classList.remove('hidden');
-            const audioPlayer = document.getElementById('audio-player');
-            audioPlayer.play();
+            if (plyrInstance) {
+                plyrInstance.play();
+            }
         }
     });
 });
@@ -155,8 +156,9 @@ contextmenuItems.forEach(item => {
             const music = document.getElementById('music');
             music.classList.remove('hidden');
             document.getElementById('rightClickMenu').classList.add('hidden');
-            const audioPlayer = document.getElementById('audio-player');
-            audioPlayer.play();
+            if (plyrInstance) {
+                plyrInstance.play();
+            }
         }
     });
 });
@@ -177,8 +179,10 @@ startMenuItems.forEach(item => {
         } else if (appId === 'music') {
             const music = document.getElementById('music');
             music.classList.remove('hidden');
-            const audioPlayer = document.getElementById('audio-player');
-            audioPlayer.play();
+            document.getElementById('startMenu').classList.add('hidden');
+            if (plyrInstance) {
+                plyrInstance.play();
+            }
         }
     });
 });
@@ -274,14 +278,23 @@ interact('#camera')
     });
 });
 
+let plyrInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
+    const audioPlayer = document.getElementById('audio-player');
+    if (audioPlayer) {
+        plyrInstance = new Plyr(audioPlayer, {
+            controls: ['play', 'mute', 'volume'],
+        });
+    }
+
     const music = document.getElementById('music');
     const closeButton = music.querySelector('.close-button');
     closeButton.addEventListener('click', () => {
         music.classList.add('hidden');
-        const audioPlayer = document.getElementById('audio-player');
-        audioPlayer.pause();
-        audioPlayer.currentTime = 0;
+        if (plyrInstance) {
+            plyrInstance.pause();
+        }
     });
 });
 
