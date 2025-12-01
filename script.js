@@ -343,3 +343,17 @@ interact('#music')
             })
         ]
     });
+
+// managing the top window
+
+let topZindex = 10;
+document.addEventListener('DOMContentLoaded', () => {
+    const windows = document.querySelectorAll('#notepad, #camera, #music');
+    windows.forEach(windows => {
+        windows.addEventListener('mousedown', () => {
+            topZindex++;
+            windows.style.zIndex = topZindex;
+        });
+    }
+    )
+});
