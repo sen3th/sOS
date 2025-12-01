@@ -168,7 +168,12 @@ function startCamera() {
             cameraVideoStream.play();
         })
         .catch(function(err) {
-            alert("Unable to access camera. Please allow camera permissions.");
+            console.log("Camera error: " + err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Camera Access Denied',
+                text: 'Unable to access camera. Please allow camera permissions.'
+            });
         });
     }
 }
