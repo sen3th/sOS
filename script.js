@@ -120,6 +120,7 @@ shortcuts.forEach(shortcut => {
         if (appId === 'camera') {
             const camera = document.getElementById('camera');
             camera.classList.remove('hidden');
+            startCamera();
         }
     });
 });
@@ -132,6 +133,11 @@ contextmenuItems.forEach(item => {
             const notepad = document.getElementById('notepad');
             notepad.classList.remove('hidden');
             document.getElementById('rightClickMenu').classList.add('hidden');
+        } else if (appId === 'camera') {
+            const camera = document.getElementById('camera');
+            camera.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+            startCamera();
         }
     }); 
 });
@@ -144,20 +150,35 @@ startMenuItems.forEach(item => {
             const notepad = document.getElementById('notepad');
             notepad.classList.remove('hidden');
             document.getElementById('startMenu').classList.add('hidden');
+        } else if (appId === 'camera') {
+            const camera = document.getElementById('camera');
+            camera.classList.remove('hidden');
+            document.getElementById('startMenu').classList.add('hidden');
+            startCamera();
         }
     });
 });
 
-const cameraVideoStream = document.getElementById('camera-stream')
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function(stream) {
-        cameraVideoStream.srcObject = stream;
-        cameraVideoStream.play();
-    })
-    .catch(function(err) {
-        console.log("An error occurred: " + err);
-    });
+const cameraVideoStream = document.getElementById('camera-stream');
+function startCamera() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            cameraVideoStream.srcObject = stream;
+            cameraVideoStream.play();
+        })
+        .catch(function(err) {
+            alert("Unable to access camera. Please allow camera permissions.");
+        });
+    }
+}
+
+function stopCamera() {
+    const stream = cameraVideoStream.srcObject;
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        cameraVideoStream.srcObject = null;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -165,5 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = camera.querySelector('.close-button');
     closeButton.addEventListener('click', () => {
         camera.classList.add('hidden');
+        stopCamera();
     });
 });
