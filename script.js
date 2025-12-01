@@ -119,3 +119,26 @@ shortcuts.forEach(shortcut => {
         }
     });
 });
+
+const contextmenuItems = document.querySelectorAll('#rightClickMenu li');
+contextmenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const appId = item.getAttribute('data-app');
+        if (appId === 'notepad') {
+            const notepad = document.getElementById('notepad');
+            notepad.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+        }
+    });
+});
+
+const startMenuItems = document.querySelectorAll('#startMenu li');
+startMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const appId = item.getAttribute('data-app');
+        if (appId === 'notepad') {
+            const notepad = document.getElementById('notepad');
+            notepad.classList.remove('hidden');
+        }
+    });
+});
