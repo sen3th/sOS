@@ -139,6 +139,7 @@ startMenuItems.forEach(item => {
         if (appId === 'notepad') {
             const notepad = document.getElementById('notepad');
             notepad.classList.remove('hidden');
+            document.getElementById('startMenu').classList.add('hidden');
         }
     });
 });
