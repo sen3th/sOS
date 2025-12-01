@@ -1,3 +1,8 @@
+window.onload = function() {
+    const audioPlayer = document.getElementById('audio-player');
+    audioPlayer.pause();
+}
+
 function updateTime() {
     const now = new Date();
     const timeElement = document.getElementById('time');
@@ -109,6 +114,7 @@ interact('#notepad')
         ]
     });
 
+    //shortcuts
 const shortcuts = document.querySelectorAll('.shortcut');
 shortcuts.forEach(shortcut => {
     shortcut.addEventListener('click', () => {
@@ -121,6 +127,12 @@ shortcuts.forEach(shortcut => {
             const camera = document.getElementById('camera');
             camera.classList.remove('hidden');
             startCamera();
+        }
+        if (appId === 'music') {
+            const music = document.getElementById('music');
+            music.classList.remove('hidden');
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.play();
         }
     });
 });
@@ -139,6 +151,13 @@ contextmenuItems.forEach(item => {
             document.getElementById('rightClickMenu').classList.add('hidden');
             startCamera();
         }
+        else if (appId === 'music') {
+            const music = document.getElementById('music');
+            music.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.play();
+        }
     });
 });
 
@@ -155,6 +174,11 @@ startMenuItems.forEach(item => {
             camera.classList.remove('hidden');
             document.getElementById('startMenu').classList.add('hidden');
             startCamera();
+        } else if (appId === 'music') {
+            const music = document.getElementById('music');
+            music.classList.remove('hidden');
+            const audioPlayer = document.getElementById('audio-player');
+            audioPlayer.play();
         }
     });
 });
@@ -196,6 +220,72 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 interact('#camera')
+    .draggable({
+        allowFrom: '.window-header',
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: '#desktop',
+                endOnly: false,
+            }),
+        ],
+        listeners: {
+            move(event) {
+                const target = event.target;
+                const X = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                const Y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                target.style.transform = `translate(${X}px, ${Y}px)`;
+                target.setAttribute('data-x', X);
+                target.setAttribute('data-y', Y);
+            }
+        },
+    })
+    .resizable({
+        edges: { left: true, right: true, bottom: true, top: true },
+        listeners: {
+            move(event) {
+                const target = event.target;
+                let x = parseFloat(target.getAttribute('data-x')) || 0;
+                let y = parseFloat(target.getAttribute('data-y')) || 0;
+
+                target.style.width = event.rect.width + 'px';
+                target.style.height = event.rect.height + 'px';
+
+                x += event.deltaRect.left;
+                y += event.deltaRect.top;
+
+                target.style.transform = `translate(${x}px, ${y}px)`;
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            }
+        },
+        modifiers: [
+            interact.modifiers.restrictSize({
+                min: { width: 300, height: 200 }
+            })
+        ]
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const camera = document.getElementById('camera');
+    const closeButton = camera.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        camera.classList.add('hidden');
+        stopCamera();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('music');
+    const closeButton = music.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        music.classList.add('hidden');
+        const audioPlayer = document.getElementById('audio-player');
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+    });
+});
+
+interact('#music')
     .draggable({
         allowFrom: '.window-header',
         modifiers: [
