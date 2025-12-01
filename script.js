@@ -117,6 +117,10 @@ shortcuts.forEach(shortcut => {
             const notepad = document.getElementById('notepad');
             notepad.classList.remove('hidden');
         }
+        if (appId === 'camera') {
+            const camera = document.getElementById('camera');
+            camera.classList.remove('hidden');
+        }
     });
 });
 
@@ -129,7 +133,7 @@ contextmenuItems.forEach(item => {
             notepad.classList.remove('hidden');
             document.getElementById('rightClickMenu').classList.add('hidden');
         }
-    });
+    }); 
 });
 
 const startMenuItems = document.querySelectorAll('#startMenu li');
@@ -141,5 +145,25 @@ startMenuItems.forEach(item => {
             notepad.classList.remove('hidden');
             document.getElementById('startMenu').classList.add('hidden');
         }
+    });
+});
+
+const cameraVideoStream = document.getElementById('camera-stream')
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        cameraVideoStream.srcObject = stream;
+        cameraVideoStream.play();
+    })
+    .catch(function(err) {
+        console.log("An error occurred: " + err);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const camera = document.getElementById('camera');
+    const closeButton = camera.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        camera.classList.add('hidden');
     });
 });
