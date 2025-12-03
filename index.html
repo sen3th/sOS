@@ -107,14 +107,39 @@
             </div>
         </div>
     </div>
-        <div id="calculator" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] border-2 border-gray-400 rounded shadow-lg">
+        <div id="calculator" class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] border-2 border-gray-400 rounded shadow-lg">
         <div class="window bg-white border border-gray-400 rounded shadow-lg w-full h-full flex flex-col">
             <div class="window-header bg-gray-200 p-2 flex justify-between items-center cursor-move">
                 <span class="font-bold">Calculator</span>
                 <button class="close-button text-red-500 font-bold hover:rotate-90 hover:scale-125 cursor-pointer transition duration-300">&times;</button>
             </div>
-            <div class="flex-grow p-10 border-t border-gray-400 resize-none">
-                <iframe src="https://www.online-calculator.com/html5/online-calculator/index.php?v=10" class="w-full h-full border-0"></iframe>
+
+            <div class="flex-grow p-4">
+                <div id="display" class="text-right h-20 leading-[70px] px-2 py-4 text-2xl border-b border-gray-400"></div>
+                <div class="grid grid-cols-4">
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">C</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">/</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">*</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">&larr;</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">7</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">8</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">9</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">-</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">4</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">5</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">6</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">+</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">1</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">2</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">3</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">(</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">)</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">0</div>
+                    <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">.</div>
+                    <div id="equal" class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-blue-600 text-white hover:bg-gray-800 transition-all duration-500">=</div>
+                </div>
+            </div>
+
             </div>
         </div>
     </div>
