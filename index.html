@@ -13,7 +13,7 @@
     <script src="https://cdn.plyr.io/3.8.3/plyr.polyfilled.js"></script>
 </head>
 <body>
-    <div id="desktop" class="relative min-h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4 select-none">
+    <div id="desktop" class="relative h-screen bg-gradient-to-br from-blue-400 to-purple-500 p-4 select-none overflow-hidden">
 
     <h1 class="text-white text-7xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">sOS</h1>
 
@@ -107,14 +107,14 @@
             </div>
         </div>
     </div>
-        <div id="calculator" class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] border-2 border-gray-400 rounded shadow-lg">
+        <div id="calculator" class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[700px] border-2 border-gray-400 rounded shadow-lg">
         <div class="window bg-white border border-gray-400 rounded shadow-lg w-full h-full flex flex-col">
             <div class="window-header bg-gray-200 p-2 flex justify-between items-center cursor-move">
                 <span class="font-bold">Calculator</span>
                 <button class="close-button text-red-500 font-bold hover:rotate-90 hover:scale-125 cursor-pointer transition duration-300">&times;</button>
             </div>
 
-            <div class="flex-grow p-4">
+            <div class="flex-grow p-4 overflow-auto">
                 <div id="display" class="text-right h-20 leading-[70px] px-2 py-4 text-2xl border-b border-gray-400"></div>
                 <div class="grid grid-cols-4">
                     <div class="calc-btn border border-gray-400 h-24 flex items-center justify-center text-2xl cursor-pointer bg-white hover:bg-gray-800 hover:text-white transition-all duration-500">C</div>
