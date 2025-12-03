@@ -135,6 +135,10 @@ shortcuts.forEach(shortcut => {
                 plyrInstance.play();
             }
         }
+        if (appId === 'calculator') {
+            const calculator = document.getElementById('calculator');
+            calculator.classList.remove('hidden');
+        }
     });
 });
 
@@ -160,6 +164,11 @@ contextmenuItems.forEach(item => {
                 plyrInstance.play();
             }
         }
+        else if (appId === 'calculator') {
+            const calculator = document.getElementById('calculator');
+            calculator.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+        }
     });
 });
 
@@ -183,6 +192,10 @@ startMenuItems.forEach(item => {
             if (plyrInstance) {
                 plyrInstance.play();
             }
+        } else if (appId === 'calculator') {
+            const calculator = document.getElementById('calculator');
+            calculator.classList.remove('hidden');
+            document.getElementById('startMenu').classList.add('hidden');
         }
     });
 });
@@ -348,7 +361,7 @@ interact('#music')
 
 let topZindex = 10;
 document.addEventListener('DOMContentLoaded', () => {
-    const windows = document.querySelectorAll('#notepad, #camera, #music');
+    const windows = document.querySelectorAll('#notepad, #camera, #music, #calculator');
     windows.forEach(windows => {
         windows.addEventListener('mousedown', () => {
             topZindex++;
@@ -356,4 +369,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     )
+});
+
+interact('#calculator')
+    .draggable({
+        allowFrom: '.window-header',
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: '#desktop',
+                endOnly: false,
+            }),
+        ],
+        listeners: {
+            move(event) {
+                const target = event.target;
+                const X = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                const Y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                target.style.transform = `translate(${X}px, ${Y}px)`;
+                target.setAttribute('data-x', X);
+                target.setAttribute('data-y', Y);
+            }
+        },
+    })
+    .resizable({
+        edges: { left: true, right: true, bottom: true, top: true },
+        listeners: {
+            move(event) {
+                const target = event.target;
+                let x = parseFloat(target.getAttribute('data-x')) || 0;
+                let y = parseFloat(target.getAttribute('data-y')) || 0;
+
+                target.style.width = event.rect.width + 'px';
+                target.style.height = event.rect.height + 'px';
+
+                x += event.deltaRect.left;
+                y += event.deltaRect.top;
+
+                target.style.transform = `translate(${x}px, ${y}px)`;
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            }
+        },
+        modifiers: [
+            interact.modifiers.restrictSize({
+                min: { width: 300, height: 200 }
+            })
+        ]
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const calculator = document.getElementById('calculator');
+    const closeButton = calculator.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        calculator.classList.add('hidden');
+    }); 
 });
