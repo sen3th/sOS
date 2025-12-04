@@ -138,6 +138,11 @@ shortcuts.forEach(shortcut => {
         if (appId === 'calculator') {
             const calculator = document.getElementById('calculator');
             calculator.classList.remove('hidden');
+            
+        }
+        if (appId === 'weather') {
+            const weather = document.getElementById('weather');
+            weather.classList.remove('hidden');
         }
     });
 });
@@ -169,6 +174,11 @@ contextmenuItems.forEach(item => {
             calculator.classList.remove('hidden');
             document.getElementById('rightClickMenu').classList.add('hidden');
         }
+        else if (appId === 'weather') {
+            const weather = document.getElementById('weather');
+            weather.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+        }
     });
 });
 
@@ -195,6 +205,11 @@ startMenuItems.forEach(item => {
         } else if (appId === 'calculator') {
             const calculator = document.getElementById('calculator');
             calculator.classList.remove('hidden');
+            document.getElementById('startMenu').classList.add('hidden');
+        }
+        else if (appId === 'weather') {
+            const weather = document.getElementById('weather');
+            weather.classList.remove('hidden');
             document.getElementById('startMenu').classList.add('hidden');
         }
     });
@@ -361,7 +376,7 @@ interact('#music')
 
 let topZindex = 10;
 document.addEventListener('DOMContentLoaded', () => {
-    const windows = document.querySelectorAll('#notepad, #camera, #music, #calculator');
+    const windows = document.querySelectorAll('#notepad, #camera, #music, #calculator, #weather');
     windows.forEach(windows => {
         windows.addEventListener('mousedown', () => {
             topZindex++;
@@ -371,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     )
 });
 
-interact('#calculator')
+interact('#calculator, #weather')
     .draggable({
         allowFrom: '.window-header',
         modifiers: [
@@ -449,5 +464,14 @@ buttons.map( button => {
             default:
                 display.innerText += e.target.innerText;
         }
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const weather = document.getElementById('weather');
+    const closeButton = weather.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        weather.classList.add('hidden');
     });
 });
