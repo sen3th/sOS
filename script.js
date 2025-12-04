@@ -475,3 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
         weather.classList.add('hidden');
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileAlert = document.getElementById('mobile-alert').querySelector('p');
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        mobileAlert.classList.remove('hidden');
+    }
+});
