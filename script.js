@@ -482,3 +482,45 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileAlert.classList.remove('hidden');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const weatherWindows = document.getElementById('weather');
+    const weatherSearchButton = document.getElementById('searchWeather');
+    const cityInput = document.getElementById('cityInput');
+
+    weatherSearchButton.addEventListener('click', searchWeather);
+
+    cityInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') searchWeather();
+    });
+     async function searchWeather() {
+        const city = document.getElementById('cityInput').value.trim();
+        if (!city) return;
+
+        const resultDiv = document.getElementById('weatherInfo');
+        const errorDiv = document.getElementById('weatherError');
+
+        try {
+            const response = await fetch(`/.netlify/functions/weather?city=${encodeURIComponent(city)}`);
+            const data = await response.json();
+
+            if (data.error || response.status !== 200) {
+                errorDiv.textContent = data.error || 'City not found';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            document.getElementById('weatherCity').textContent = `${data.name}, ${data.sys.country}`;
+            document.getElementById('weatherTemp').textContent = `Temperature: ${data.main.temp} °C`;
+            document.getElementById('weatherDescription').textContent = `Conditions: ${data.weather[0].description}`;
+            document.getElementById('weatherHumidity').textContent = `Humidity: ${data.main.humidity}%`;
+            document.getElementById('weatherWind').textContent = `Wind Speed: ${data.wind.speed} m/s`;
+
+            resultDiv.classList.remove('hidden');
+
+        } catch (error) {
+            errorDiv.textContent = 'Error fetching weather data';
+            errorDiv.classList.remove('hidden');
+        }
+    }
+});
