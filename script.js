@@ -68,6 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const qrgen = document.getElementById('qrgen');
+    const closeButton = qrgen.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        qrgen.classList.add('hidden');
+    });
+});
+
 interact('#notepad')
     .draggable({
         allowFrom: '.window-header',
@@ -144,6 +152,10 @@ shortcuts.forEach(shortcut => {
             const weather = document.getElementById('weather');
             weather.classList.remove('hidden');
         }
+        if (appId === 'qrgen') {
+            const qrgen = document.getElementById('qrgen');
+            qrgen.classList.remove('hidden');
+        }
     });
 });
 
@@ -179,6 +191,11 @@ contextmenuItems.forEach(item => {
             weather.classList.remove('hidden');
             document.getElementById('rightClickMenu').classList.add('hidden');
         }
+        else if (appId === 'qrgen') {
+            const qrgen = document.getElementById('qrgen');
+            qrgen.classList.remove('hidden');
+            document.getElementById('rightClickMenu').classList.add('hidden');
+        }
     });
 });
 
@@ -210,6 +227,11 @@ startMenuItems.forEach(item => {
         else if (appId === 'weather') {
             const weather = document.getElementById('weather');
             weather.classList.remove('hidden');
+            document.getElementById('startMenu').classList.add('hidden');
+        }
+        else if (appId === 'qrgen') {
+            const qrgen = document.getElementById('qrgen');
+            qrgen.classList.remove('hidden');
             document.getElementById('startMenu').classList.add('hidden');
         }
     });
