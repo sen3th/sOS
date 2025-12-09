@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileAlert = document.getElementById('mobile-alert').querySelector('p');
+    const mobileAlert = document.getElementById('mobile-alert');
     if (/Mobi|Android/i.test(navigator.userAgent)) {
         mobileAlert.classList.remove('hidden');
     }
