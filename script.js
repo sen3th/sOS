@@ -408,8 +408,8 @@ document.addEventListener('DOMContentLoaded', () => {
     )
 });
 
-interact('#calculator, #weather')
-    .draggable({
+interact('#calculator, #weather, #qrgen')
+    .draggable({ 
         allowFrom: '.window-header',
         modifiers: [
             interact.modifiers.restrictRect({
@@ -546,3 +546,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const generateQRButton = document.getElementById('generateQR');
+    generateQRButton.addEventListener('click', generateQRCode);
+});
+
+function generateQRCode() {
+    const qrInput = document.getElementById('qrInput').value.trim();
+    const qrImage = document.getElementById('qrImage');
+
+    if (qrInput) {
+        qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(qrInput);
+        qrImage.classList.remove('hidden');
+    }
+}
