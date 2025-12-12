@@ -642,6 +642,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const generateQRButton = document.getElementById('generateQR');
     generateQRButton.addEventListener('click', generateQRCode);
+    const qrInput = document.getElementById('qrInput');
+    qrInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') generateQRCode();
+    });
 });
 
 function generateQRCode() {
