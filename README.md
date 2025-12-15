@@ -1,4 +1,4 @@
-sOS is a simple, aesthetic and expermental operating system like site build with html tailwind and javascript.
+sOS is a simple, aesthetic and experimental operating system like site built with HTML, Tailwind and JavaScript.
 
 ## Features
 - Simple and clean design
