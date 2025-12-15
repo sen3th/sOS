@@ -726,3 +726,64 @@ interact('#stopwatch')
             })
         ]
     });
+
+document.addEventListener('DOMContentLoaded', () => {
+    let startTime;
+    let updatedTime;
+    let difference;
+    let timerInterval;
+    let running = false;
+    let paused = false;
+
+    let stopwatchDisplay = document.getElementById('stopwatchDisplay');
+    let startStopwatchButton = document.getElementById('startStopwatch');
+    let stopStopwatchButton = document.getElementById('stopStopwatch');
+    let resetStopwatchButton = document.getElementById('resetStopwatch');
+
+    startStopwatchButton.addEventListener('click', startStopwatch);
+    stopStopwatchButton.addEventListener('click', stopStopwatch);
+    resetStopwatchButton.addEventListener('click', resetStopwatch);
+
+    function startStopwatch() {
+        if (!running) {
+            startTime = new Date().getTime() - (difference || 0);
+            timerInterval = setInterval(updateStopwatch, 10);
+            running = true;
+            paused = false;
+        } else {
+            clearInterval(timerInterval);
+            paused = true;
+            running = false;
+        }
+    }
+
+    function resetStopwatch() {
+        clearInterval(timerInterval);
+        running = false;
+        paused = false;
+        difference = 0;
+        stopwatchDisplay.innerHTML = '00:00:00';
+    }
+
+    function stopStopwatch() {
+        clearInterval(timerInterval);
+        running = false;
+        paused = false;
+        difference = 0;
+    }
+
+    function updateStopwatch() {
+        updatedTime = new Date().getTime();
+        difference = updatedTime - startTime;
+
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        let milliseconds = Math.floor((difference % 1000) / 10);
+
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
+
+        stopwatchDisplay.textContent = minutes + ':' + seconds + ':' + milliseconds;
+    }
+});
